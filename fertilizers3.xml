@@ -23,30 +23,11 @@
        </rule>
      </grammar>
 
-  <if cond = "firstOption == 1">
-    <goto next="#chooseCrop" />
+		<if cond = "firstOption == 1">
+			<goto next="#chooseCrop" />
 
-
-
-   <elseif cond="firstOption == 2" />
-    <goto next="#chooseFertilizer" />		
-		
-		
-		
-		
-
-
-<!--
-      This grammar is specifically for recognizing voice on the same input as the dtmf. 
-     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
-      <rule id="MYRULE" scope = "public">
-        <one-of>
-         <item> one </item>
-         <item> two </item>
-        </one-of>
-      </rule>
-    </grammar>
--->
+		<elseif cond="firstOption == 2" />
+			<goto next="#chooseFertilizer" />		
 
 
   <noinput>
@@ -65,39 +46,44 @@
  </field>
 
 
-
-	 
-
-		
-<!--
- <filled namelist="processAnswers" mode = "all">
-
-	<if cond="firstOption == 'One'" />
-    <goto next="#chooseCrop" />
-  <elseif cond="firstOption == two" />
-   <goto next="#chooseFertilizer" />
-  </filled>
-
--->
-
 </form>
 
  
+	
+	
+		 <script>
+            <![CDATA[
+				
+				i
+				 var crop = application.crop
+				 var weahter = application.weahter
+
+				// Open CSV file
+				
+				
+				// Create dictioniary from CSV file [{C,W,F}]
+
+				for (var i = 0; i < len ; i++):
+					if (crop === c && weahter === w){
+							//waarde van F
+					};
+				// 
+         // iterate through array
+         for (var i = 0; i < len; i++) {
+
+           // check if DTMF 
+           if (application.lastresult$[i].confidence > .7) {
+             confident_count++;
+           }
+         }
+
+        ]]>
+        </script>	
 
 
 <form id="chooseCrop">
 
    <field name="crop" slot="crop">
-		 
-		 <grammar xml:lang="en-US" root = "RESPONSE" mode = "voice">
-				<rule id="RESPONSE">
-				 <one-of>
-					 <item> rice </item>
-					 <item> chocolate </item>
-					 <item> pumpkin </item>
-				 </one-of>
-				</rule>
-		 </grammar>
    
 		 <grammar xml:lang="en-US" root = "RESPONSE" mode = "DTMF">
     		<rule id="RESPONSE">
@@ -113,52 +99,78 @@
       Which crop are you harvesting? Select 1 for rice, 2 for chocolate and 3 for pumpkin, or say the name of your crop.
     </prompt>
 
-	<filled namelist="processAnswers" mode = "all">
-  		<if cond = "firstOption == 1">
-    	<goto next="#chooseCrop" />
+		<filled namelist="processAnswers" mode = "all">
+				<if cond = "chooseCrop == 1">
+					 <var name="crop" expr="rice"/>
+				<elseif cond = "chooseCrop == 2">
+					 <var name="crop" expr="chocolate"/>
+				<elseif cond = "chooseCrop == 3">
+					 <var name="crop" expr="pumpkin"/>
+		</filled>
+		
+	</field>
+</form>
+			
 
-  <elseif cond="firstOption == 'One'" />
-    <goto next="#chooseCrop" />
+<form id="chooseWeahter">
 
-   <elseif cond="firstOption == 2" />
-    <goto next="#chooseFertilizer" />
-    
-  <elseif cond="firstOption == two" />
+   <field name="weahter" slot="weahter">
+   
+		 <grammar xml:lang="en-US" root = "RESPONSE" mode = "DTMF">
+    		<rule id="RESPONSE">
+				 <one-of>
+					 <item> 1 </item>
+					 <item> 2 </item>
+					 <item> 3 </item>
+				 </one-of>
+				</rule>
+			 </grammar>
 
-   <goto next="#chooseFertilizer" />
-  </filled> 
+    <prompt bargein="true">
+			<!--Maybe we can also use data from the internet & location of the user-->
+      What is the weather condition? Select 1 for rain, 2 for dry and 3 for cold.
+    </prompt>
+
+		<filled namelist="processAnswers" mode = "all">
+				<if cond = "chooseWeahter == 1">
+					 <var name="weather" expr="rain"/>
+				<elseif cond = "chooseWeahter == 2">
+					 <var name="weather" expr="dry"/>
+				<elseif cond = "chooseWeahter == 3">
+					 <var name="weather" expr="cold"/>
+		</filled>
+		
+	</field>
+</form>
+	
+	
+	 <prompt bargein="true">
+      What kind of weather condition is it? Select 1 for Rain, 2 for dry and 3 for cold.
+   </prompt>
+		
+		<filled namelist="processAnswers" mode = "all">
+  		<if cond = "chooseCrop == 1">
+				 <var name="crop" expr="rice"/>
+			<elseif cond = "chooseCrop == 2">
+				 <var name="crop" expr="chocolate"/>
+			<elseif cond = "chooseCrop == 3">
+				 <var name="crop" expr="pumpkin"/>
+  </filled>
 		 
-		 
-		 
-		 
-		 
-		 
-   <field>
-			<filled>
-        <assign name="selected_class" expr="class_id" />
-        <goto next="#confirm_class" />
-      </filled>
-    </field>
+			 
+	
  
 
   <filled namelist="decideWhichFertilizer" mode="all">
-
    <if cond="crop == 'rice'">
-
      <goto next="#decideOnWeather" />
-
    <elseif cond="confirm == 'no'" />
-
     <prompt>
-
        Thank you! Goodbye!
-
     </prompt>
-
    </if>
-
   </filled>
-
+		
 </form>
 
 
@@ -166,52 +178,32 @@
 
    <field name="confirm" slot="confirm">
 
- 
-
    <grammar xml:lang="en-US" root = "RESPONSE">
-
     <rule id="RESPONSE">
-
      <one-of>
-
        <item> yes </item>
-
        <item> no </item>
-
      </one-of>
-
     </rule>
-
    </grammar>
-
+		 
     <prompt bargein="false">
-
       Do you want to play again?
-
     </prompt>
-
    </field>
 
  
-
   <filled namelist="confirm" mode="all">
-
    <if cond="confirm == 'yes'">
-
      <goto next="#guessNumber" />
-
    <elseif cond="confirm == 'no'" />
-
     <prompt>
-
        Thank you! Goodbye!
-
     </prompt>
-
    </if>
-
   </filled>
 
+	
 </form>
 
 </vxml>
