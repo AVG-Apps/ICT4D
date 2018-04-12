@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<vxml version = "2.1">
+
+<meta name="maintainer" content="j.n.schermer@gmail.com" />
+ 
+
+<form id="mainMenu">
+
+  <field name="firstOption">
+
+  <prompt>
+
+   Enter or say 1 if you want to know which fertilizer you need to use, enter or say 2 if you would like
+to know how to apply a particular fertilizer.
+  </prompt>
+
+ 
+
+     <!-- This grammar is specifically for recognizing dtmf. -->
+
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+
+      <rule id="MYRULE" scope = "public">
+
+        <one-of>
+
+          <item> 1 </item>
+
+          <item> 2 </item>
+
+        </one-of>
+
+       </rule>
+
+     </grammar>
+
+ 
+
+     <!-- This grammar is specifically for recognizing voice on the same input as the dtmf. -->
+
+     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
+
+      <rule id="MYRULE" scope = "public">
+
+        <one-of>
+
+         <item> one </item>
+
+         <item> two </item>
+
+        </one-of>
+
+      </rule>
+
+    </grammar>
+
+ 
+
+  <noinput>
+
+   <prompt>
+
+    I did not hear you. Please try again.
+
+   </prompt>
+
+   <reprompt/>
+
+  </noinput>
+
+ 
+
+  <nomatch>
+
+   <prompt>
+
+    Is that a number? Please try again.
+
+   </prompt>
+
+   <reprompt/>
+
+  </nomatch>
+
+  </field>
+
+
+
+
+ <filled namelist="processAnswers" mode = "all">
+
+  <if cond = "firstOption == 1">
+
+    <goto next="#chooseCrop" />
+
+  <elseif cond="firstOption == 'One'" />
+    <goto next="#chooseCrop" />
+
+   <elseif cond="firstOption == 2" />
+    <goto next="#chooseFertilizer" />
+    
+  <elseif cond="firstOption == two" />
+
+   <goto next="#chooseFertilizer" />
+
+  </filled>
+
+</form>
+
+ 
+
+
+<form id="chooseCrop">
+
+   <field name="crop" slot="crop">
+
+ 
+
+   <grammar xml:lang="en-US" root = "RESPONSE" mode = "voice">
+
+    <rule id="RESPONSE">
+
+     <one-of>
+
+       <item> rice </item>
+
+       <item> chocolate </item>
+
+       <item> pumpkin </item>
+
+     </one-of>
+
+    </rule>
+
+   </grammar>
+
+   <grammar xml:lang="en-US" root = "RESPONSE" mode = "DTMF">
+
+    <rule id="RESPONSE">
+
+     <one-of>
+
+       <item> 1 </item>
+
+       <item> 2 </item>
+
+       <item> 3 </item>
+
+     </one-of>
+
+    </rule>
+
+   </grammar>
+
+    <prompt bargein="true">
+
+      Which crop are you harvesting? Select 1 for rice, 2 for chocolate and 3 for pumpkin, or say the name of your crop.
+
+    </prompt>
+
+   </field>
+<filled>
+        <assign name="selected_class" expr="class_id" />
+        <goto next="#confirm_class" />
+      </filled>
+    </field>
+ 
+
+  <filled namelist="decideWhichFertilizer" mode="all">
+
+   <if cond="crop == 'rice'">
+
+     <goto next="#decideOnWeather" />
+
+   <elseif cond="confirm == 'no'" />
+
+    <prompt>
+
+       Thank you! Goodbye!
+
+    </prompt>
+
+   </if>
+
+  </filled>
+
+</form>
+
+
+<form id="playAgain">
+
+   <field name="confirm" slot="confirm">
+
+ 
+
+   <grammar xml:lang="en-US" root = "RESPONSE">
+
+    <rule id="RESPONSE">
+
+     <one-of>
+
+       <item> yes </item>
+
+       <item> no </item>
+
+     </one-of>
+
+    </rule>
+
+   </grammar>
+
+    <prompt bargein="false">
+
+      Do you want to play again?
+
+    </prompt>
+
+   </field>
+
+ 
+
+  <filled namelist="confirm" mode="all">
+
+   <if cond="confirm == 'yes'">
+
+     <goto next="#guessNumber" />
+
+   <elseif cond="confirm == 'no'" />
+
+    <prompt>
+
+       Thank you! Goodbye!
+
+    </prompt>
+
+   </if>
+
+  </filled>
+
+</form>
+
+</vxml>
