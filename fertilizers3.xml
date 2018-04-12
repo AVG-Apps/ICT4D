@@ -24,7 +24,7 @@
      </grammar>
 
 		<if cond = "firstOption == 1">
-			<goto next="#chooseCrop" />
+			<goto next="#chooseCropWeather" />
 
 		<elseif cond="firstOption == 2" />
 			<goto next="#chooseFertilizer" />		
@@ -44,44 +44,40 @@
 			 <reprompt/>
 		</nomatch>
  </field>
-
-
 </form>
 
  
 	
-	
-		 <script>
+<form id="chooseCropWeather">
+
+		<script>
             <![CDATA[
-				
-				i
-				 var crop = application.crop
-				 var weahter = application.weahter
+				function chooseFertilizer(crop, weather) {
+
+				 var fertializer = '';
 
 				// Open CSV file
 				
 				
 				// Create dictioniary from CSV file [{C,W,F}]
+					dict = [{'crop':'rice',
+									 'weather':'rain', 
+									 'fertilizer':'f1'},
 
-				for (var i = 0; i < len ; i++):
-					if (crop === c && weahter === w){
-							//waarde van F
-					};
-				// 
-         // iterate through array
-         for (var i = 0; i < len; i++) {
+									{'crop':'rice',
+									 'weather':'dry', 
+									 'fertilizer':'f2'},
 
-           // check if DTMF 
-           if (application.lastresult$[i].confidence > .7) {
-             confident_count++;
-           }
-         }
+						]
 
+							for (var i = 0; i < len ; i++){
+								if (crop == dict['crop'] && weahter == dict['weather']){
+									return fertilizer = dict['fertilizer'];
+								};
+							};
+						};
         ]]>
-        </script>	
-
-
-<form id="chooseCrop">
+    </script>	
 
    <field name="crop" slot="crop">
    
@@ -101,31 +97,13 @@
 
 		<filled namelist="processAnswers" mode = "all">
 				<if cond = "chooseCrop == 1">
-					 <var name="crop" expr="rice"/>
+					 <var name="crop" expr='rice'/>
 				<elseif cond = "chooseCrop == 2">
 					 <var name="crop" expr="chocolate"/>
 				<elseif cond = "chooseCrop == 3">
 					 <var name="crop" expr="pumpkin"/>
 		</filled>
 		
-	</field>
-</form>
-			
-
-<form id="chooseWeahter">
-
-   <field name="weahter" slot="weahter">
-   
-		 <grammar xml:lang="en-US" root = "RESPONSE" mode = "DTMF">
-    		<rule id="RESPONSE">
-				 <one-of>
-					 <item> 1 </item>
-					 <item> 2 </item>
-					 <item> 3 </item>
-				 </one-of>
-				</rule>
-			 </grammar>
-
     <prompt bargein="true">
 			<!--Maybe we can also use data from the internet & location of the user-->
       What is the weather condition? Select 1 for rain, 2 for dry and 3 for cold.
@@ -139,24 +117,17 @@
 				<elseif cond = "chooseWeahter == 3">
 					 <var name="weather" expr="cold"/>
 		</filled>
+					
+		<prompt bargein="true">
+			The best fertilizer you can use is <value expr="chooseFertilizer(crop, weather)" />
+    </prompt>
 		
 	</field>
 </form>
 	
-	
-	 <prompt bargein="true">
-      What kind of weather condition is it? Select 1 for Rain, 2 for dry and 3 for cold.
-   </prompt>
-		
-		<filled namelist="processAnswers" mode = "all">
-  		<if cond = "chooseCrop == 1">
-				 <var name="crop" expr="rice"/>
-			<elseif cond = "chooseCrop == 2">
-				 <var name="crop" expr="chocolate"/>
-			<elseif cond = "chooseCrop == 3">
-				 <var name="crop" expr="pumpkin"/>
-  </filled>
-		 
+
+			
+			
 			 
 	
  
