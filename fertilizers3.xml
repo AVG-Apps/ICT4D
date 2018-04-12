@@ -34,22 +34,7 @@
 		
 		
 		
-	<menu dtmf="true">
-		<prompt>
-			Welcome home.
-			<enumerate>
-			 For <value expr="_prompt"/>, press <value
-			 expr="_dtmf"/>.
-		 </enumerate>
-		 </prompt>
-		 <choice next="http://www.sports.example.com/vxml/start.vxml">
-				sports </choice>
-		 <choice next="http://www.weather.example.com/intro.vxml">
-				weather </choice>
-		 <choice next="http://www.stargazer.example.com/voice/astronews.vxml">
-				Stargazer astrophysics news
-		 </choice>
-	</menu>
+
 
 <!--
       This grammar is specifically for recognizing voice on the same input as the dtmf. 
