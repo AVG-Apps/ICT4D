@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<vxml version = "2.1">
+
+	<meta name="tassdr" content="tasossdr@gmail.com"/>
+	<form id = "fertilizerMenu">
+		<block>
+			<prompt bargein = "false">
+				Welcome to the fertilizer menu.
+			</prompt>
+			<goto next = "#getCropWeather"/>
+		</block>
+	</form>
+
+		<form id = "getCropWeather">
+			<grammar src = "subgrm.xml#CROP_WEATHER" type = "application/grammar-xml"/>
+				<initial name="init_get_cropWeather">
+					<prompt>
+						Please, tell me the crop you are harvesting and the weather condition.
+					</prompt>
+					<assign name="myInit" expr="true"/>
+
+				</initial>
+
+				<field name = "crop">
+					<prompt> What crop are you harvesting? </prompt>
+					<grammar src = "subgrm.xml#CROP" type = "application/grammar-xml"/>
+				</field>
+
+				<field name = "condition">
+					<prompt> And the weather condition </prompt>
+					<grammar src = "subgrm.xml#CROP_WEATHER" type = "application/grammar-xml"/>
+				</field>
+
+				<filled mode = "all">
+					<if cond = "crop == 'coco'">
+						<prompt> The best fertilizer to use is fert1 </prompt>
+					</if>
+				</filled>
+			</form>
+</vxml>
