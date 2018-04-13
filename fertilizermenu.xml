@@ -20,10 +20,9 @@
 					<nomatch count="1">
 						<nomatch count ="1">
 							Okay, I'll ask you for the information one at a time.
+							<assign name="getCropWeather" expr="true"/>
 							<reprompt/>
 						</nomatch>
-					<assign name="getCropWeather" expr="true"/>
-
 				</initial>
 
 				<field name = "crop">
