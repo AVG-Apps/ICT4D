@@ -48,7 +48,7 @@
 		<item> rainy</item>
 		<item> rain </item>
 		<item> raining</item>
-		<tag> out = "rain"; </tag>
+		<tag> out.condition = "rain"; </tag>
 		</one-of>
 	</item>
 		<item>
@@ -57,7 +57,7 @@
 				<item> sunny </item>
 				<item> scalding </item>
 				<item> burning </item>
-				<tag> out = "dry"; </tag>
+				<tag> out.condition = "dry"; </tag>
 			</one-of>
 		</item>
 		<item>
@@ -66,7 +66,7 @@
 					<item> heavy </item>
 					<item> steamy </item>
 					<item> humid </item>
-					<tag> out = "humid"; </tag>
+					<tag> out.condition = "humid"; </tag>
 					</one-of>
 					</item>
 				</one-of>
