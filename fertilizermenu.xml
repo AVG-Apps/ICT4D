@@ -17,7 +17,7 @@
 					<prompt>
 						Please, tell me the crop you are harvesting and the weather condition.
 					</prompt>
-					<assign name="myInit" expr="true"/>
+					<assign name="getCropWeather" expr="true"/>
 
 				</initial>
 
