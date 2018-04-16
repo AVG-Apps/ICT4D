@@ -40,7 +40,7 @@
 
 			<nomatch>
 					<prompt>
-							Is that a number? Please try again.
+							I did not understand it.
 					</prompt>
 					<reprompt/>
 			</nomatch>
@@ -84,7 +84,7 @@
 
 					<nomatch>
 							<prompt>
-									Is that a number? Please try again.
+							I did not understand it.
 							</prompt>
 							<reprompt/>
 					</nomatch>
@@ -152,7 +152,7 @@
 
 			<nomatch>
 					<prompt>
-							Is that a number? Please try again.
+							I did not understand it.
 					</prompt>
 					<reprompt/>
 			</nomatch>
