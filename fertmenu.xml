@@ -104,7 +104,7 @@
 
 
    <filled mode="all" namelist="crop weather">
-      Thank you. You said that the crop is <value expr="crop"/> and the weather is in a <value expr="weather"/> condition. Correct?
+      Thank you. You said that the crop is <value expr="crop"/> and the weather is in a <value expr="weather"/> condition.
 
       <if cond = "crop == 'Cocoa' &amp;&amp; weather == 'Wet'">
         <prompt>
@@ -132,20 +132,6 @@
             </prompt>
             <goto next = "#navigation"/>
       </if>
-   </filled>
-
-   <field name  = "navigation">
-    <prompt bargein = "true">
-      Say again to get information about another crop and weather condition.
-      Say main, to return to the main menu.
-    </prompt>
-    <filled namelist = "navigation">
-    <if cond = "navigation = 'Main">
-      <goto next = "mainmenu.xml"/>
-      <elseif cond = "navigation = 'Again'"/>
-        <goto next = "#crop weather"/>
-      </if>
-  </filled>
-</field>
+      </filled>
 </form>
 </vxml>
