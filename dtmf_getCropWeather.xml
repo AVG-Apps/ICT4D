@@ -19,9 +19,9 @@
 					Please  select the right number for,
 					Which crop are you harvesting? 
 					
-					Select 1 for rice, 
-					Select 2 for chocolate, 
-					Select 3 for pumpkin.
+					Select 1 for cocoa, 
+					Select 2 for corn, 
+					Select 3 for cotton.
 				</prompt> 			
 
      <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
@@ -52,11 +52,11 @@
 			<filled namelist="get_crop" mode = "all">
 
 					<if cond ="get_crop == 1">
-						 	<assign name="crop" expr="'rice'"/>
+						 	<assign name="crop" expr="'cocoa'"/>
 						<elseif cond ="get_crop == 2"/>
-						 	<assign name="crop" expr="'chocolate'"/>
+						 	<assign name="crop" expr="'corn'"/>
 						<elseif cond ="get_crop == 3"/>
-						 	<assign name="crop" expr="'pumpkin'"/>
+						 	<assign name="crop" expr="'cotton'"/>
 					</if>
 
 				<prompt>The crop you have chosen is <value expr="crop" />.</prompt>
@@ -69,9 +69,8 @@
 			<prompt bargein="true">
 				<!--Maybe we can also use data from the internet & location of the user-->
 					What is the weather condition?
-					Select 1 for rain, 
+					Select 1 for wet, 
 					Select 2 for dry, 
-					Select 3 for cold.
 				</prompt>
 
      <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
@@ -79,7 +78,6 @@
         <one-of>
 						 <item> 1 </item>
 						 <item> 2 </item>
-						 <item> 3 </item>
 					 </one-of>
 					</rule>
 				 </grammar>
@@ -102,11 +100,10 @@
 			<filled namelist="get_weather" mode = "all">
 
 					<if cond ="get_weather == 1">
-						 	<assign name="weather" expr="'rain'"/>
+						 	<assign name="weather" expr="'wet'"/>
 						<elseif cond ="get_weather == 2"/>
 						 	<assign name="weather" expr="'dry'"/>
-						<elseif cond ="get_weather == 3"/>
-						 	<assign name="weather" expr="'cold'"/>
+
 					</if>
 			
 				<prompt>The weather you have chosen is <value expr="weather" />.</prompt>
@@ -122,8 +119,12 @@
 
 								var fertilizer = '';
 
-								dict = [{'crop': 'rice', 'weather':'rain', 'fertilizer':'fertilizer one'},
-												{'crop': 'rice', 'weather':'dry',  'fertilizer':'fertilizer two'},
+								dict = [{'crop': 'cocoa', 'weather':'wet', 'fertilizer':'fertilizer one'},
+												{'crop': 'cocoa', 'weather':'dry',  'fertilizer':'fertilizer two'},
+												{'crop': 'corn', 'weather':'wet', 'fertilizer':'fertilizer three'},
+												{'crop': 'corn', 'weather':'dry',  'fertilizer':'fertilizer four'},
+												{'crop': 'cotton', 'weather':'wet', 'fertilizer':'fertilizer five'},
+												{'crop': 'cotton', 'weather':'dry',  'fertilizer':'fertilizer six'},
 												];
 
 
