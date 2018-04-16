@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1" revision="4"
+      xmlns="http://www.w3.org/2001/vxml">
+<form id="mixed">
+   <grammar mode="voice"
+           root="top"
+           tag-format="semantics/1.0"
+           version="1.0"
+           xml:lang="en-US">
+   <rule id="top">
+          <one-of>
+            <item><ruleref special="GARBAGE"/></item>
+            <item><ruleref special="NULL"/></item>
+         </one-of>
+      <one-of>
+         <item>
+            <ruleref uri="#CROP"/> <tag>out.crop=rules.CROP.crop </tag>
+            <ruleref uri="#WEATHER"/> <tag>out.weather=rules.WEATHER.weather </tag>
+         </item>
+         <item>
+            <ruleref uri="#CROP"/> <tag>out.crop=rules.CROP.crop</tag>
+         </item>
+         <item>
+            <ruleref uri="#WEATHER"/> <tag>out.weather=rules.WEATHER.weather</tag>
+         </item>
+      </one-of>
+   </rule>
+   <rule id="CROP">
+      <one-of>
+         <item>Corn <tag>out.crop="Corn"</tag></item>
+         <item> Cocoa  <tag>out.crop="Cocoa"</tag></item>
+         <item>  Cotton  <tag>out.crop="Cotton"</tag></item>
+      </one-of>
+   </rule>
+
+   <rule id = "NAV">
+    <one-of>
+      <item> Main <tag> out.navigation = "Main"</tag></item>
+      <item> Again <tag> out.navigation = "Again" </tag></item>
+      <item> How To <tag> out.navigation = "How To" </tag></item>
+    </one-of>
+  </rule>
+
+   <rule id="WEATHER">
+      <one-of>
+         <item> Rain  <tag>out.weather="Wet"</tag></item>
+         <item> Raining  <tag>out.weather="Wet"</tag></item>
+         <item> Rainy  <tag>out.weather="Wet"</tag></item>
+         <item> Wet  <tag>out.weather="Wet"</tag></item>
+         <item>  Boiling  <tag>out.weather="Dry"</tag></item>
+         <item>  Hot  <tag>out.weather="Dry"</tag></item>
+         <item>  Sunny  <tag>out.weather="Dry"</tag></item>
+         <item>  Dry  <tag>out.weather="Dry"</tag></item>
+      </one-of>
+   </rule>
+       <one-of>
+            <item><ruleref special="GARBAGE"/></item>
+            <item><ruleref special="NULL"/></item>
+         </one-of>
+   </grammar>
+
+
+
+   <initial name="crop_weather">
+      <prompt>
+       "null" You want the fertilizer for what crop and weather condition?
+      </prompt>
+      <help>
+        Please say the name of the crop and
+        the weather condition, such as corn under rain.
+      </help>
+      <!-- Reprompt once, then try directed prompts. -->
+      <catch event="noinput nomatch" count="1">
+        Please say something like "For corn, in rain".
+      </catch>
+      <catch event="noinput nomatch" count="2">
+        I'm sorry, I still don't understand.
+        I'll ask you for information one piece at a time.
+        <assign name="crop_weather" expr="true"/>
+      </catch>
+   </initial>
+
+   <field name="crop">
+      <prompt>What is the name of the crop for which you would like
+              the fertilizer?
+      </prompt>
+
+      <catch event="noinput nomatch" count="3">
+         Sorry you're having trouble. I will transfer you the the DTMF menu.
+         <goto next = "dtmf=dtmf_getCropWeather"/>
+      </catch>
+
+   </field>
+   <field name="weather">
+      <prompt>What is the weather condition?
+      </prompt>
+
+      <catch event="noinput nomatch" count="3">
+         Sorry you're having trouble. I will transfer you to the DTMF menu.
+         <goto next = "dtmf_getCropWeather.xml"/>
+      </catch>
+
+   </field>
+
+
+   <filled mode="all" namelist="crop weather">
+      Thank you. You said that the crop is <value expr="crop"/> and the weather is in a <value expr="weather"/> condition. Correct?
+
+      <if cond = "crop == 'Cocoa' &amp;&amp; weather == 'Wet'">
+        <prompt>
+          ,The best fertilizer is oxide
+        </prompt>
+        <elseif cond = "crop == 'Cocoa' &amp;&amp; weather == 'Dry'"/>
+          <prompt>
+            ,The best fertilizer is moondust
+          </prompt>
+        <elseif cond = "crop == 'Corn' &amp;&amp; weather == 'Wet'"/>
+          <prompt>
+            ,The best fertilizer is meteorite 
+          </prompt>
+          <elseif cond = "crop == 'Corn' &amp;&amp; weather == 'Dry'"/>
+          <prompt>
+            ,The best fertilizer is limejuice 
+          </prompt>
+          <elseif cond = "crop == 'Cotton' &amp;&amp; weather == 'Wet'"/>
+            <prompt>
+              ,The best fertilizer is sugarcube
+            </prompt>
+            <elseif cond = "crop == 'Cotton' &amp;&amp; weather == 'Dry'"/>
+            <prompt>
+              ,The best fertilizer is dark matter
+            </prompt>
+            <goto next = "#navigation"/>
+      </if>
+   </filled>
+
+   <field name  = "navigation">
+    <prompt bargein = "true">
+      Say again to get information about another crop and weather condition.
+      Say main, to return to the main menu.
+    </prompt>
+    <filled namelist = "navigation">
+    <if cond = "navigation = 'Main">
+      <goto next = "mainmenu.xml"/>
+      <elseif cond = "navigation = 'Again'"/>
+        <goto next = "#crop weather"/>
+      </if>
+  </filled>
+</field>
+</form>
+</vxml>
