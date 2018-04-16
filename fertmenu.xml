@@ -63,7 +63,7 @@
 
    <initial name="crop_weather">
       <prompt>
-       "null" You want the fertilizer for what crop and weather condition?
+       You want the fertilizer for what crop and weather condition?
       </prompt>
       <help>
         Please say the name of the crop and
