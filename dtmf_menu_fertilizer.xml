@@ -1,0 +1,15 @@
+<vxml version="2.0" xmlns="http://www.w3.org/2001/vxml" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.w3.org/2001/vxml 
+   http://www.w3.org/TR/voicexml20/vxml.xsd">
+<menu>
+  <property name="inputmodes" value="dtmf"/>
+  <prompt>
+			You have two options, 
+			Press 1 if you want to know which fertilizer you need to use, 
+			Press 2 if you would like to know how to apply a particular fertilizer.
+  </prompt>
+  <choice dtmf="1" next="dtmf_getCropWeather.xml"/>
+  <choice dtmf="2" next="dtmf_menu_howto.xml"/>
+</menu>
+</vxml>

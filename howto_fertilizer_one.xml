@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<vxml version="2.0" xmlns="http://www.w3.org/2001/vxml" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.w3.org/2001/vxml 
+   http://www.w3.org/TR/voicexml20/vxml.xsd">
+
+	<form id="how_to_fertilizer">
+		<block>
+			<prompt>
+				Welcome, to how to use fertilizer one.
+				In this tutorial we will explain how you could use fertilizer one.
+				This tutorial has six steps.
+				</prompt>
+		</block>
+			
+		<block name="roadmap">
+				<prompt>Step one, First you need to do this.</prompt>
+
+				<prompt>Step two, Do this, this and this.</prompt>
+
+				<prompt>Step three, Do this, this and this.</prompt>
+
+				<prompt>Step four, Do this, this and this.</prompt>
+
+				<prompt>Step five, Do this, this and this.</prompt>
+
+				<prompt>Step six, Do this, this and this.</prompt>
+		</block>
+		
+		<field name="message_again">
+			<grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+						 <item> 1 </item>
+						 <item> 2 </item>
+					 </one-of>
+					</rule>
+				 </grammar>
+			
+			<noinput>
+				 <prompt>
+						I did not understood you. Please try again.
+				 </prompt>
+				 <reprompt/>
+			</noinput>
+
+			<nomatch>
+					<prompt>
+							Is that a number? Please try again.
+					</prompt>
+					<reprompt/>
+			</nomatch>
+			
+			<prompt bargein="true">
+				Would you like to hear the message again?
+				
+				Select 1 for Yes,
+				Select 2 for No.
+			</prompt>
+			
+			<filled namelist="message_again" mode = "all">
+
+					<if cond ="message_again == 1">
+							<goto nextitem="roadmap"/>			
+						<elseif cond ="message_again == 2"/>
+							<prompt>You will be redirected to the how to menu</prompt>
+							<goto next="dtmf_menu_howto.xml"/>			
+					</if>
+			</filled>			
+		</field>
+	</form>
+</vxml>

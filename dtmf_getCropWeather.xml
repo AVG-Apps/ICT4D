@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<vxml version="2.0" xmlns="http://www.w3.org/2001/vxml" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.w3.org/2001/vxml 
+   http://www.w3.org/TR/voicexml20/vxml.xsd">
+
+	<form id="getCropWeather">
+
+		<block>
+			<prompt>
+					Welcome to hear which fertilizer is the best for your crop.
+					We would like to know which crop you use,
+					and what the weather condition is.
+				</prompt>
+		</block>
+			
+		<field name="get_crop">
+				<prompt bargein="true">
+					Please  select the right number for,
+					Which crop are you harvesting? 
+					
+					Select 1 for rice, 
+					Select 2 for chocolate, 
+					Select 3 for pumpkin.
+				</prompt> 			
+
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+						 <item> 1 </item>
+						 <item> 2 </item>
+						 <item> 3 </item>
+					 </one-of>
+					</rule>
+				 </grammar>
+			
+			<noinput>
+				 <prompt>
+						I did not understood you. Please try again.
+				 </prompt>
+				 <reprompt/>
+			</noinput>
+
+			<nomatch>
+					<prompt>
+							Is that a number? Please try again.
+					</prompt>
+					<reprompt/>
+			</nomatch>
+								
+			<var name="crop"/>
+			<filled namelist="get_crop" mode = "all">
+
+					<if cond ="get_crop == 1">
+						 	<assign name="crop" expr="'rice'"/>
+						<elseif cond ="get_crop == 2"/>
+						 	<assign name="crop" expr="'chocolate'"/>
+						<elseif cond ="get_crop == 3"/>
+						 	<assign name="crop" expr="'pumpkin'"/>
+					</if>
+
+				<prompt>The crop you have chosen is <value expr="crop" />.</prompt>
+			</filled>
+		</field>
+
+
+
+		<field name="get_weather">
+			<prompt bargein="true">
+				<!--Maybe we can also use data from the internet & location of the user-->
+					What is the weather condition?
+					Select 1 for rain, 
+					Select 2 for dry, 
+					Select 3 for cold.
+				</prompt>
+
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+						 <item> 1 </item>
+						 <item> 2 </item>
+						 <item> 3 </item>
+					 </one-of>
+					</rule>
+				 </grammar>
+			
+			<noinput>
+				 <prompt>
+						I did not understood you. Please try again.
+				 </prompt>
+				 <reprompt/>
+			</noinput>
+
+			<nomatch>
+					<prompt>
+							Is that a number? Please try again.
+					</prompt>
+					<reprompt/>
+			</nomatch>
+			
+			<var name="weather"/>
+			<filled namelist="get_weather" mode = "all">
+
+					<if cond ="get_weather == 1">
+						 	<assign name="weather" expr="'rain'"/>
+						<elseif cond ="get_weather == 2"/>
+						 	<assign name="weather" expr="'dry'"/>
+						<elseif cond ="get_weather == 3"/>
+						 	<assign name="weather" expr="'cold'"/>
+					</if>
+			
+				<prompt>The weather you have chosen is <value expr="weather" />.</prompt>
+			</filled>
+
+		</field>
+
+			
+		<block name="fertilizer">
+		<script>
+        <![CDATA[
+						function chooseFertilizer(crop, weather) {
+
+								var fertilizer = '';
+
+								dict = [{'crop': 'rice', 'weather':'rain', 'fertilizer':'fertilizer one'},
+												{'crop': 'rice', 'weather':'dry',  'fertilizer':'fertilizer two'},
+												];
+
+
+							for (var i = 0; i < dict.length; i++){
+								if (crop == dict[i]['crop'] && weather == dict[i]["weather"]){
+									return fertilizer = dict[i]['fertilizer']}
+
+							}
+
+									return fertilizer;
+						}
+        ]]>
+    </script>	
+			<prompt bargein="true">
+				You have chose for the options <value expr="crop" /> and <value expr="weather" />, so that makes,
+				The best fertilizer you can use is <value expr="chooseFertilizer(crop, weather)" />
+			</prompt>
+		</block>
+		
+		
+		<field name="message_again">
+			<grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+						 <item> 1 </item>
+						 <item> 2 </item>
+					 </one-of>
+					</rule>
+				 </grammar>
+			
+			<noinput>
+				 <prompt>
+						I did not understood you. Please try again.
+				 </prompt>
+				 <reprompt/>
+			</noinput>
+
+			<nomatch>
+					<prompt>
+							Is that a number? Please try again.
+					</prompt>
+					<reprompt/>
+			</nomatch>
+			
+			<prompt bargein="true">
+				Would you like to hear the message again?
+				
+				Select 1 for Yes,
+				Select 2 for No.
+			</prompt>
+			
+			<filled namelist="message_again" mode = "all">
+
+					<if cond ="message_again == 1">
+							<goto nextitem="fertilizer"/>			
+						<elseif cond ="message_again == 2"/>
+							<goto nextitem="menu_choose"/>			
+
+					</if>
+			</filled>			
+		</field>
+		
+		<field name="menu_choose">
+			<grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+						 <item> 1 </item>
+						 <item> 2 </item>
+						 <item> 3 </item>
+					 </one-of>
+					</rule>
+				 </grammar>
+			
+			
+			<prompt bargein="true">
+				Would you like to start over and choose for another fertilizer?,
+				Would you like to know how you need to work with the fertilizer?,
+				or would you like to go back to the main menu.
+				
+				Select 1 to start over,
+				Select 2 to go how to use the fertilizer,
+				Select 3 to go to main menu.
+			</prompt>
+			
+			<filled namelist="menu_choose" mode = "all">
+
+					<if cond ="menu_choose == 1">
+							<goto next="#getCropWeather"/>			
+						<elseif cond ="menu_choose == 2"/>
+							<goto next="dtmf_menu_howto.xml"/>		
+						<elseif cond ="menu_choose == 3"/>
+							<goto next="dtmf_index.xml"/>			
+					</if>
+			</filled>			
+		</field>
+	</form>
+</vxml>

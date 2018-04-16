@@ -1,0 +1,22 @@
+<vxml version="2.0" xmlns="http://www.w3.org/2001/vxml" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.w3.org/2001/vxml 
+   http://www.w3.org/TR/voicexml20/vxml.xsd">
+<menu name="stepByStep">
+  <property name="inputmodes" value="dtmf"/>
+			<prompt>
+				Welcome, to how to use fertilizer three.
+				In this tutorial we will explain how you could use fertilizer one.
+				
+				Step 1 Do this
+				Step 2, 
+				Step 3,
+				Step 4.
+			</prompt>
+	
+			
+  <choice dtmf="1" next="#stepByStep"/>
+  <choice dtmf="2" next="dtmf_menu_howto.xml"/>
+	<choice dtmf="3" next="dtmf_getCropWeather.xml"/>
+</menu>
+</vxml>
