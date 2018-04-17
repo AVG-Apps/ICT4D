@@ -40,14 +40,14 @@
 			
 			<noinput>
 				 <prompt>
-						I did not understood you. Please try again.
+						I did not understand it. Please try again.
 				 </prompt>
 				 <reprompt/>
 			</noinput>
 
 			<nomatch>
 					<prompt>
-							I did not understand it.
+						I do not understand this number. Please try another number.
 					</prompt>
 					<reprompt/>
 			</nomatch>

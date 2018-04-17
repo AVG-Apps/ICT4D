@@ -36,14 +36,14 @@
 			
 			<noinput>
 				 <prompt>
-						I did not understand you. Please try again.
+						Sorry, I did not understand it. Please try again.
 				 </prompt>
 				 <reprompt/>
 			</noinput>
 
 			<nomatch>
 					<prompt>
-							I did not understand it.
+						Sorry, I do not understand this number. Please try another number.
 					</prompt>
 					<reprompt/>
 			</nomatch>
@@ -84,14 +84,14 @@
 			
 			<noinput>
 				 <prompt>
-						I did not understand you. Please try again.
+						Sorry, I did not understand it. Please try again.
 				 </prompt>
 				 <reprompt/>
 			</noinput>
 
 			<nomatch>
 					<prompt>
-							I did not understand it.
+						Sorry, I do not understand this number. Please try another number.
 					</prompt>
 					<reprompt/>
 			</nomatch>
@@ -157,14 +157,14 @@
 			
 			<noinput>
 				 <prompt>
-						I did not understand you. Please try again.
+						Sorry, I did not understand it. Please try again.
 				 </prompt>
 				 <reprompt/>
 			</noinput>
 
 			<nomatch>
 					<prompt>
-							I did not understand it.
+						Sorry, I do not understand this number. Please try another number.
 					</prompt>
 					<reprompt/>
 			</nomatch>
