@@ -4,7 +4,8 @@
    http://www.w3.org/TR/voicexml20/vxml.xsd">
 <menu>
   <property name="inputmodes" value="dtmf"/>
-			<prompt>Welcome, this section will explain how to use a certain fertilizer.
+			<prompt>
+					This section will explain how to use a certain fertilizer.
 					But first we would like to know which fertilizer do you want to use?
 				
 					Select 1 for fertilizer one, 

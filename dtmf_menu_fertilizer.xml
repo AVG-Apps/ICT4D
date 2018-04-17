@@ -5,7 +5,10 @@
 <menu>
   <property name="inputmodes" value="dtmf"/>
   <prompt>
-			You have two options, 
+			In this is section you can choose,
+			to search for the best fertilizer to use,
+			or you can listening to how to use a particular fertilizer.
+		
 			Press 1 if you want to know which fertilizer you need to use, 
 			Press 2 if you would like to know how to apply a particular fertilizer.
   </prompt>
