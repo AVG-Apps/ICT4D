@@ -218,7 +218,7 @@
 						<elseif cond ="menu_choose == 2"/>
 							<goto next="dtmf_menu_howto.xml"/>		
 						<elseif cond ="menu_choose == 3"/>
-							<goto next="dtmf_index.xml"/>			
+							<goto next="mainmenu.xml"/>			
 					</if>
 			</filled>			
 		</field>
