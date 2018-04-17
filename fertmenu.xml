@@ -33,14 +33,6 @@
       </one-of>
    </rule>
 
-   <rule id = "NAV">
-    <one-of>
-      <item> Main <tag> out.navigation = "Main"</tag></item>
-      <item> Again <tag> out.navigation = "Again" </tag></item>
-      <item> How To <tag> out.navigation = "How To" </tag></item>
-    </one-of>
-  </rule>
-
    <rule id="WEATHER">
       <one-of>
          <item> Rain  <tag>out.weather="Wet"</tag></item>
@@ -133,5 +125,44 @@
             <goto next = "#navigation"/>
       </if>
       </filled>
+      
+      <field name="navigation">
+      <grammar xml:lang="en-US" root = "NAV" mode="voice">
+        <rule id = "NAV" scope = "public">
+        <one-of>
+              <item> Yes </item>
+              <item> No </item>
+        </one-of>
+      </rule>
+         </grammar>
+      
+      <noinput>
+         <prompt>
+            I did not understand you. Please try again.
+         </prompt>
+         <reprompt/>
+      </noinput>
+
+      <nomatch>
+          <prompt>
+              That is an invalid choice. Try again.
+          </prompt>
+          <reprompt/>
+      </nomatch>
+      
+      <prompt bargein="true">
+        ,Would you like to hear the message again?
+      </prompt>
+      
+      <filled namelist="navigation">
+
+          <if cond ="navigation == 'Yes'">
+              <goto nextitem="crop_weather"/>      
+            <elseif cond ="navigation == 'No'"/>
+              <prompt>You will be redirected to the main menu</prompt>
+              <goto next="mainmenu.xml"/>      
+          </if>
+   </filled>
+ </field>
 </form>
 </vxml>
