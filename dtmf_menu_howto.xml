@@ -11,9 +11,11 @@
 					Select 1 for fertilizer one, 
 					Select 2 for fertilizer two, 
 					Select 3 for fertilizer three.
+					If you want to go back select 0
 				</prompt>
   <choice dtmf="1" next="howto_fertilizer_one.xml"/>
-  <choice dtmf="2" next="howto_fertilizer_two.xml"/>
-	<choice dtmf="3" next="howto_fertilizer_three.xml"/>
+  <choice dtmf="2" next="howto_fertilizer_one.xml"/>
+	<choice dtmf="3" next="howto_fertilizer_one.xml"/>
+	<choice dtmf="0" next="mainmenu.xml"/>
 </menu>
 </vxml>

@@ -9,23 +9,11 @@
 			<prompt>
 				You have chosen to listen to how to use fertilizer one.
 				In this tutorial we will explain how you could use fertilizer one.
-				This tutorial has six steps.
 				</prompt>
 		</block>
 			
-		<block name="roadmap">
-				<audio src="20180417-162253.wav"/>
-
-				<prompt>Step one, First you need to do this.</prompt>
-
-				<prompt>Step two, Do this, this and this.</prompt>
-
-				<prompt>Step three, Do this, this and this.</prompt>
-
-				<prompt>Step four, Do this, this and this.</prompt>
-
-				<prompt>Step five, Do this, this and this.</prompt>				
-
+		<block name="tutorial">
+				<prompt><audio src="20180417-162253.wav"/></prompt>
 		</block>
 		
 		<field name="message_again">
@@ -62,7 +50,7 @@
 			<filled namelist="message_again" mode = "all">
 
 					<if cond ="message_again == 1">
-							<goto nextitem="roadmap"/>			
+							<goto nextitem="tutorial"/>			
 						<elseif cond ="message_again == 2"/>
 							<prompt>You will be redirected to the how to menu</prompt>
 							<goto next="dtmf_menu_howto.xml"/>			
