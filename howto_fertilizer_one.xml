@@ -14,6 +14,7 @@
 		</block>
 			
 		<block name="roadmap">
+				<audio src="20180417-162253.wav"/>
 
 				<prompt>Step one, First you need to do this.</prompt>
 
@@ -25,7 +26,6 @@
 
 				<prompt>Step five, Do this, this and this.</prompt>				
 
-				<audio src="http://www.few.vu.nl/~vbr240/voices/LTE/communique.wav"/>
 		</block>
 		
 		<field name="message_again">
