@@ -8,7 +8,7 @@
 
 		<block>
 			<prompt>
-					To hear which fertilizer is the best for your crop.
+					To know which the best fertilizer for your crop.
 					We would like to know which crop you use,
 					and what the weather condition is.
 				</prompt>
@@ -17,7 +17,7 @@
 		<field name="get_crop">
 				<prompt bargein="true">
 					Please  select the right number for,
-					Which crop are you harvesting? 
+					which crop are you harvesting? 
 					
 					Select 1 for cocoa, 
 					Select 2 for corn, 
@@ -68,7 +68,9 @@
 		<field name="get_weather">
 			<prompt bargein="true">
 				<!--Maybe we can also use data from the internet & location of the user-->
-					What is the weather condition?
+					Please now select the right number for,
+					the weather condition?
+				
 					Select 1 for wet, 
 					Select 2 for dry, 
 				</prompt>
@@ -139,8 +141,8 @@
         ]]>
     </script>	
 			<prompt bargein="true">
-				You have chose for the options <value expr="crop" /> and <value expr="weather" />, so that makes,
-				The best fertilizer you can use is <value expr="chooseFertilizer(crop, weather)" />
+				You have chosen for the options <value expr="crop" /> and <value expr="weather" />,
+				so the best fertilizer you can use is <value expr="chooseFertilizer(crop, weather)" />
 			</prompt>
 		</block>
 		
