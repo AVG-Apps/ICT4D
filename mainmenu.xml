@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<vxml version = "2.1" xmlns="http://www.w3.org/2001/vxml">
+
+	<meta name="tassdr" content="tasossdr@gmail.com"/>
+
+
+	<form id = "Welcome">
+		<block>
+			<prompt barge in = "false">
+				Welcome to mohn mooahssohn!
+			</prompt>
+		</block>
+		
+	<field name = "Choices">
+		<prompt bargein = "true">
+		 Say fertilizers. for the fertilizer menu. or how-to. for the how-to menu.
+		</prompt>
+		<grammar xml:lang = "en-US" root = "mainChoices">
+		<rule id = "mainChoices">
+			<one-of>
+				<item> fertilizers </item>
+				<item> how-to </item>
+			</one-of>
+		</rule>
+	</grammar>
+	
+		<noinput>
+		Sorry, I did not hear you.
+		<reprompt/>
+		</noinput>
+	<nomatch>
+		There is no such available option, please try again
+	</nomatch>
+		</field>
+
+	<filled namelist = "Choices">
+				<if cond = "Choices == 'fertilizers'">
+					<goto next = "fertilizermenu.xml"/>
+						<elseif cond ="Choices == 'how-to'"/>
+						<goto next = "howtomenu.xml"/>
+							
+					</if>
+					</filled>
+				</form>
+					</vxml>
