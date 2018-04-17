@@ -9,6 +9,7 @@
            xml:lang="en-US">
    <rule id="top">
           <one-of>
+            <!-- Using GARBAGE and NULL rulerefs to allow the input to be taken even if other things are said by the user -->
             <item><ruleref special="GARBAGE"/></item>
             <item><ruleref special="NULL"/></item>
          </one-of>
@@ -26,6 +27,7 @@
       </one-of>
    </rule>
    <rule id="CROP">
+      <!-- Grammars for crop and weather -->
       <one-of>
          <item>Corn <tag>out.crop="Corn"</tag></item>
          <item> Cocoa  <tag>out.crop="Cocoa"</tag></item>
@@ -52,10 +54,10 @@
    </grammar>
 
 
-
+   <!-- Initial element allows for multiple input; user may say For corn in rain-->
    <initial name="crop_weather">
       <prompt>
-       You want the fertilizer for what crop and weather condition?
+          You want the fertilizer for what crop and weather condition?
       </prompt>
       <help>
         Please say the name of the crop and
@@ -79,7 +81,7 @@
 
       <catch event="noinput nomatch" count="3">
          Sorry you're having trouble. I will transfer you the the DTMF menu.
-         <goto next = "dtmf=dtmf_getCropWeather"/>
+         <goto next = "dtmf_getCropWeather"/>
       </catch>
 
    </field>
@@ -94,9 +96,9 @@
 
    </field>
 
-
+   <!-- Fertilizer conditional logic -->
    <filled mode="all" namelist="crop weather">
-      Thank you. You said that the crop is <value expr="crop"/> and the weather is in a <value expr="weather"/> condition.
+      Thank you. You said that the crop is <value expr="crop"/> and the weather is in a <value expr="weather"/> condition
 
       <if cond = "crop == 'Cocoa' &amp;&amp; weather == 'Wet'">
         <prompt>
@@ -124,8 +126,9 @@
             </prompt>
             <goto next = "#navigation"/>
       </if>
-      </filled>
-      
+    </filled>
+
+      <!-- Field and grammar for navigation -->
       <field name="navigation">
       <grammar xml:lang="en-US" root = "NAV" mode="voice">
         <rule id = "NAV" scope = "public">
