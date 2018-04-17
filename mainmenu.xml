@@ -6,7 +6,7 @@
 
 	<form id = "Welcome">
 		<block>
-			<prompt barge in = "false">
+			<prompt bargein = "false">
 				Welcome to mohn mooahssohn!
 			</prompt>
 		</block>
@@ -24,22 +24,24 @@
 		</rule>
 	</grammar>
 	
-		<noinput>
-		Sorry, I did not hear you.
+		<catch event = "noinput nomatch" count = "1">
+			Sorry, I did not catch that, try again.
 		<reprompt/>
-		</noinput>
-	<nomatch>
-		There is no such available option, please try again
-	</nomatch>
-		</field>
+	</catch>
+
+		<catch event = "noinput nomatch" count = "2">
+			Sorry, you are having trouble, I will transfer you to the D.T.M.F menu.
+			<goto next = "dtmfmenu.xml"/>
+	</catch>
 
 	<filled namelist = "Choices">
 				<if cond = "Choices == 'fertilizers'">
-					<goto next = "fertilizermenu.xml"/>
+					<goto next = "fertmenu.xml"/>
 						<elseif cond ="Choices == 'how-to'"/>
-						<goto next = "howtomenu.xml"/>
+						<goto next = "dtmf_menu_howto.xml"/>
 							
 					</if>
 					</filled>
+				</field>
 				</form>
 					</vxml>
