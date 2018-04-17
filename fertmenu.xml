@@ -79,7 +79,7 @@
 
       <catch event="noinput nomatch" count="3">
          Sorry you're having trouble. I will transfer you the the DTMF menu.
-         <goto next = "dtmf=dtmf_getCropWeather"/>
+         <goto next = "dtmf_getCropWeather"/>
       </catch>
 
    </field>
