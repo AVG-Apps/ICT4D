@@ -130,8 +130,8 @@
       <grammar xml:lang="en-US" root = "NAV" mode="voice">
         <rule id = "NAV" scope = "public">
         <one-of>
-              <item> Yes </item>
-              <item> No </item>
+              <item> Again </item>
+              <item> Main </item>
         </one-of>
       </rule>
          </grammar>
@@ -151,14 +151,17 @@
       </nomatch>
       
       <prompt bargein="true">
-        ,Would you like to hear the message again?
+        ,Would you like to try another fertilizer or go to the main menu?
+
+        Say "Again", or "Main".
       </prompt>
       
       <filled namelist="navigation">
 
-          <if cond ="navigation == 'Yes'">
-              <goto nextitem="crop_weather"/>      
-            <elseif cond ="navigation == 'No'"/>
+          <if cond ="navigation == 'Again'">
+              <goto nextitem="crop_weather"/>
+              <assign name = "crop_weather" expr = "false"/>      
+            <elseif cond ="navigation == 'Main'"/>
               <prompt>You will be redirected to the main menu</prompt>
               <goto next="mainmenu.xml"/>      
           </if>
