@@ -14,17 +14,9 @@
 		</block>
 			
 		<block name="roadmap">
-				<prompt>Step one, First you need to do this.</prompt>
+				
 
-				<prompt>Step two, Do this, this and this.</prompt>
-
-				<prompt>Step three, Do this, this and this.</prompt>
-
-				<prompt>Step four, Do this, this and this.</prompt>
-
-				<prompt>Step five, Do this, this and this.</prompt>
-
-				<prompt>Step six, Do this, this and this.</prompt>
+				<audio src="http://www.few.vu.nl/~vbr240/voices/LTE/communique.wav"/>
 		</block>
 		
 		<field name="message_again">
