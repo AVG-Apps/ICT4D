@@ -1,38 +1,50 @@
 <html>
 
 <header>
+{% load static %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="./static/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fertilizerapp/style.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </header>
 
     <body>
 
-        <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid">
           <div class="container">
               <div class="row">
                 <div class="col-lg-8">
-                    <img class="img-rounded" src="https://ochun.shop/image/cache/catalog/Producten/cacao-boon-800x800.jpg" style="height: 70%">
+                    <img class="img-rounded img-thumbnail" src="https://ochun.shop/image/cache/catalog/Producten/cacao-boon-800x800.jpg" style="height:77%">
                 </div>
                 <div class="col-lg-4">
-                    <h1 class="display-4">Cocoa</h1>
-                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <ul class="list-group">
-                        <li class="list-group-item">Fertilizer: Fertilizer one</li>
-                        <li class="list-group-item">Crop: cocao</li>
-                        <li class="list-group-item">Weather condition: Dry</li>
-                      </ul>
-                  </div>
+                    <h1  class="display-4">{{ fertilizer.fertilizer_text|capfirst }}</h1>
+                    <p class="lead">{{ fertilizer.subdescription_text|capfirst }}</p>
+
+                     <div class="card-body">
+                         <ul class="list-group">
+                          <li class="list-group-item"><strong>Fertilizer:</strong> {{ fertilizer.fertilizer_text }}</li>
+                              <!--Crop-->
+                              {% for crop in fertilizer.crop_set.all %}
+                                <li class="list-group-item"><strong>Crop:</strong> {{crop|capfirst}}</li>
+                              {% endfor %}
+                              <!--Weather Conditions-->
+                              {% for weather_condition in fertilizer.weather_set.all %}
+                                <li class="list-group-item"><strong>Weather condition:</strong> {{weather_condition|capfirst}}</li>
+                              {% endfor %}
+                        </ul>
+                     </div>
+                        <p class="card-text">{{ fertilizer.description_text }}</p>
+
                 </div>
               </div>
-              <button type="button" class="btn btn-info"><a href="http://127.0.0.1:8000/fertilizerapp">Go Back</a></button>
+              <a href="/fertilizerapp/"><button type="button" class="btn btn-info">Go Back</button></a>
+              <a href="/fertilizerapp/{{ fertilizer.id }}/edit/"> <button type="button" class="btn btn-warning">Edit</button></a>
+              <a href="/fertilizerapp/{{ fertilizer.id}}/delete/"><button type="button" class="btn btn-danger">Delete</button></a>
+
           </div>
         </div>
     <div class="container">
-        <h1>Tutorial of Cocoa</h1>
-        <br>
+        <h1>Tutorial of {{ fertilizer.fertilizer_text }}</h1>
+        </br>
         <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249655790&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>    </div>
 
     </body>
