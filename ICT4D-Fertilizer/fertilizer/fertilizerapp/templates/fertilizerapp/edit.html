@@ -20,7 +20,7 @@
         <div class="container">
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-            <form action="{% url 'fertilizerapp:detail' fertilizer.id %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                     <div class="form-group row">
                       <label>Fertilizer</label>
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group row">
-                      <label>Sub-Description</label>
+                      <label>Online-Description</label>
                         <input type="text-field" class="form-control" value="{{ fertilizer.subdescription_text }}">
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>

@@ -1,31 +1,84 @@
-from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 
+from .forms import FertilizerForm, CropForm, WeatherConditionForm
+from .models import Fertilizer
 
-
-
-from .models import Fertilizer, Crop, Weather
-
+#Index page
 def index(request):
     latest_fertilizer_list = Fertilizer.objects.all()
     context = {'latest_fertilizer_list': latest_fertilizer_list}
     return render(request, 'fertilizerapp/index.html', context)
 
-
-def detail(request, fertilizer_id):
-    fertilizer = get_object_or_404(Fertilizer, pk=fertilizer_id)
+#Fertilizer page
+def fertilizer(request, id=id):
+    fertilizer = Fertilizer.objects.get(id=id)
     return render(request, 'fertilizerapp/detail.html', {'fertilizer': fertilizer})
 
-def edit(request, fertilizer_id):
-    fertilizer = get_object_or_404(Fertilizer, pk=fertilizer_id)
-    return render(request, 'fertilizerapp/edit.html', {'fertilizer': fertilizer})
 
-def results(request, fertilizer_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % fertilizer_id)
+#add new fertilizer
+def add_fertilizer(request):
+    if request.method == "POST":
+        form = FertilizerForm(request.POST)
+        if form.is_valid():
+            fertilizer_item = form.save(commit=False)
+            fertilizer_item.save()
+            return redirect('/fertilizer/' + str(fertilizer_item.id) + '/')
+    else:
+        form = FertilizerForm()
+    return render(request, 'fertilizerapp/fertilizer_form.html', {'form':form})
 
-def add(request):
-    template = loader.get_template('fertilizerapp/addView.html')
-    return HttpResponse(template.render())
+#edit fertilizer
+def edit_fertilizer(request, id=None):
+    item = get_object_or_404(Fertilizer, id=id)
+    form = FertilizerForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/fertilizer/' + str(item.id) + '/')
+    return render(request, 'fertilizerapp/fertilizer_form.html', {'form':form})
+
+#add new crop
+def add_crop(request):
+    if request.method == "POST":
+        form = CropForm(request.POST)
+        if form.is_valid():
+            crop_item = form.save(commit=False)
+            crop_item.save()
+            return redirect('/add/crop/')
+    else:
+        form = CropForm()
+    return render(request, 'fertilizerapp/crop_form.html', {'form':form})
+
+#edit crop
+def edit_crop(request, id=None):
+    item = get_object_or_404(Fertilizer, id=id)
+    form = CropForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/fertilizer/' + str(item.id) + '/')
+    return render(request, 'fertilizerapp/crop_form.html', {'form':form})
+
+
+#add new weather
+def add_weather(request):
+    if request.method == "POST":
+        form = WeatherConditionForm(request.POST)
+        if form.is_valid():
+            weather_item = form.save(commit=False)
+            weather_item.save()
+            return redirect('/add/weather/')
+    else:
+        form = WeatherConditionForm()
+    return render(request, 'fertilizerapp/weather_form.html', {'form':form})
+
+#edit weather
+def edit_weather(request, id=None):
+    item = get_object_or_404(Fertilizer, id=id)
+    form = WeatherConditionForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/fertilizer/' + str(item.id) + '/')
+    return render(request, 'fertilizerapp/weather_form.html', {'form':form})

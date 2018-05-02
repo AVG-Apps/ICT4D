@@ -1,13 +1,13 @@
-from django.urls import path
-
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # ex: /polls/
-    path('', views.index, name='index'),
+    url(r'^add/fertilizer/$', views.add_fertilizer, name='add_fertilizer'),
+    url(r'^add/crop/$', views.add_crop, name='add_crop'),
+    url(r'^add/weather/$', views.add_weather, name='add_weather'),
 
-    path('<int:fertilizer_id>/', views.detail, name='detail'),
-    path('<int:fertilizer_id>/results/', views.results, name='results'),
-    path('<int:fertilizer_id>/edit/', views.edit, name='edit'),
-    path('new_fertilizer', views.add, name='add'),
+    url(r'^fertilizer/(?P<id>\d+)/edit/$', views.edit_fertilizer, name='edit_fertilizer'),
+    url(r'^fertilizer/(?P<id>\d+)/$', views.fertilizer, name='fertilizer'),
+    url(r'^', views.index, name='index'),
+
 ]

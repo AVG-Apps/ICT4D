@@ -6,6 +6,34 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fertilizerapp/style.css' %}" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+
+    <style>
+        .pagination {
+            display: inline-block;
+            margin-left: 40%;
+
+            margin-top: 3%;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    }
+
+
+    </style>
 
 </header>
 
@@ -15,38 +43,60 @@
       <div class="container">
         <h1 class="display-4">MonMassion</h1>
         <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-          <a href="new_fertilizer"><button type="button" class="btn btn-info">Add Fertilizer</button></a>
+          <a href="/add/fertilizer/"><button type="button" class="btn btn-info">Add Fertilizer</button></a>
+          <a href="/add/crop/"><button type="button" class="btn btn-info">Add Crop</button></a>
+          <a href="/add/weather/"><button type="button" class="btn btn-info">Add Weather Condition</button></a>
 
       </div>
     </div>
 
 
     <div class="container">
-        {% if latest_fertilizer_list %}
+            {% if latest_fertilizer_list %}
             <div class="row">
-            {% for fertilizer in latest_fertilizer_list %}
+                {% for fertilizer in latest_fertilizer_list %}
                 <div class="col-lg-4 col-md-4 col-sm-6  col-sx-12">
                   <div class="card">
-                      <div class="card-header">
-                            <h2 class="card-title mx-auto text-center">{{ fertilizer.fertilizer_text }}</h2>
-                      </div>
-                      <img class="img-thumbnail" style="height: 30%;" src="https://ochun.shop/image/cache/catalog/Producten/cacao-boon-800x800.jpg" alt="Card image cap">
-                      <div class="card-body">
-                            <p class="card-text mx-auto text-center">{{ fertilizer.description_text|slice:"0:199" }}...</p>
+                     <div class="card-header">
+                            {{ fertilizer.fertilizer_name }}
+                         <img class="img-thumbnail" src="https://ochun.shop/image/cache/catalog/Producten/cacao-boon-800x800.jpg" alt="Card image cap">
+                     </div>
+                     <div class="card-body">
+                          <div class="card-body">
+                              <h2 class="card-title mx-auto text-center">{{ fertilizer.fertilizer_name }}</h2>
+                              <h2 class="card-title mx-auto text-center">{{ fertilizer.crop_name }}</h2>
+                              <p class="card-text mx-auto text-center">{{ fertilizer.description|slice:"0:120" }}...</p>
+                          </div>
+                     </div>
+                      <a href="/fertilizer/{{ fertilizer.id }}/" class="btn btn-info">Read More...</a>
 
-                      </div>
-
-                      <a href="/fertilizerapp/{{ fertilizer.id }}/" class="card-link"><button type="button" class="btn btn-info" style="padding-left: 37%; padding-right: 37%">Read More...</button></a>
                   </div>
                 </div>
               {% endfor %}
             </div>
-
         {% else %}
-            <p>No Fertilizers are available.</p>
+            <p>No Fertilizers available.</p>
         {% endif %}
     </div>
 
 
+
+
+    <!--<div>-->
+        <!--<div class="pagination text-center">-->
+          <!--<a href="#">&laquo;</a>-->
+          <!--<a href="#">1</a>-->
+          <!--<a class="active" href="#">2</a>-->
+          <!--<a href="#">3</a>-->
+          <!--<a href="#">4</a>-->
+          <!--<a href="#">5</a>-->
+          <!--<a href="#">6</a>-->
+          <!--<a href="#">&raquo;</a>-->
+        <!--</div>-->
+
+     <!--</div>-->
+
 </body>
+
+
 </html>

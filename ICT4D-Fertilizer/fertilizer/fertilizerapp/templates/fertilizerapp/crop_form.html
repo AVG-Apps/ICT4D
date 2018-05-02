@@ -1,0 +1,47 @@
+<html>
+
+<header>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fertilizerapp/style.css' %}" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</header>
+
+<body>
+
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Create a new or Edit the Fertilizer</h1>
+        <p class="lead">To add a new fertilizer into the database you need to add all the information in the form.
+            Warning, it is important that the audio files are clear and can be uploaded under the names entered.</p>
+      </div>
+    </div>
+        <div class="container">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                {{ form.non_field_errors}}
+
+                <div class="field_wrapper">
+                    {{form.crop_name.errors}}
+                    <label for="{{ form.crop_name.id_for_label }}">Crop</label>
+                    {{ form.crop_name }}
+                </div>
+
+                <div class="field_wrapper">
+                    {{form.crop_img_url.errors}}
+                    <label for="{{ form.crop_img_url.id_for_label }}">Image URL Crop</label>
+                    {{ form.crop_img_url }}
+                </div>
+                <input type="submit" class="btn btn-success" value="Save">
+            </form>
+
+            <a href="/"><button class="btn btn-info"> Go Back</button></a>
+
+        </div>
+
+</body>
+
+</html>
