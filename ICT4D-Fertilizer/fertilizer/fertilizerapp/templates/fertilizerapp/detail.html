@@ -13,7 +13,7 @@
           <div class="container">
               <div class="row">
                 <div class="col-lg-8">
-                    <img class="img-rounded img-thumbnail" src="https://ochun.shop/image/cache/catalog/Producten/cacao-boon-800x800.jpg" style="height:77%">
+                    <img class="img-rounded img-thumbnail" src="{{ fertilizer.crop_list.crop_img_url|capfirst }}" style="height:77%">
                 </div>
                 <div class="col-lg-4">
                     <h1  class="display-4">{{ fertilizer.fertilizer_name|capfirst }}</h1>
@@ -24,13 +24,9 @@
                              <!--Fertilizer-->
                               <li class="list-group-item"><strong>Fertilizer:</strong> {{ fertilizer.fertilizer_name|capfirst }}</li>
                               <!--Crop-->
-                              {% for crop in fertilizer.crop_list.all %}
-                                <li class="list-group-item"><strong>Crop:</strong> {{crop|capfirst}}</li>
-                              {% endfor %}
+                                <li class="list-group-item"><strong>Crop:</strong> {{ fertilizer.crop_list|capfirst }}</li>
                               <!--Weather Conditions-->
-                              {% for weather_condition in fertilizer.weather_condition.all %}
-                                <li class="list-group-item"><strong>Weather condition:</strong> {{weather_condition|capfirst}}</li>
-                              {% endfor %}
+                                <li class="list-group-item"><strong>Weather condition:</strong> {{ fertilizer.weather_condition_list.weather_condition|capfirst }}</li>
                         </ul>
                      </div>
                         <p class="card-text">{{ fertilizer.description }}</p>

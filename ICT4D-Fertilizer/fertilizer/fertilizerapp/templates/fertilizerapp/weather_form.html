@@ -24,7 +24,7 @@
 
                 {{ form.non_field_errors}}
 
-                <div class="field_wrapper">
+                <div class="form-group row">
                     {{form.weather_condition.errors}}
                     <label for="{{ form.weather_condition.id_for_label }}">Weather</label>
                     {{ form.weather_condition }}
@@ -34,7 +34,7 @@
                 <input type="submit" class="btn btn-success" value="Save">
             </form>
 
-            <a href="/"><button class="btn btn-info"> Go Back</button></a>
+            <a href="/add/fertilizer/"><button class="btn btn-info"> Go Back</button></a>
 
         </div>
 
