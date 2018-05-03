@@ -3,12 +3,12 @@
 
 <!--Fertilizer form in French-->
 <form id="fertilizersFR">
-	<!-- DTMF grammar and field that holds the value for crop-->
+   <!-- DTMF grammar and field that holds the value for crop-->
    <field name="crop">
-   		<audio src = "https://django-static.vps.abaart.nl/group3/django/Welcome - french.wav"/>
-   		<!-- For corn press 1, for cotton, press 2, for cocoa, press 3-->
-   		<audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
-   		<audio src = "https://django-static.vps.abaart.nl/group3/django/corn - french.wav"/>
+	<audio src = "https://django-static.vps.abaart.nl/group3/django/Welcome - french.wav"/>
+	<!-- For corn press 1, for cotton, press 2, for cocoa, press 3-->
+	<audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
+	<audio src = "https://django-static.vps.abaart.nl/group3/django/corn - french.wav"/>
     	<audio src = "https://django-static.vps.abaart.nl/group3/django/appuyez sur.wav"/>
     	<audio src = "https://django-static.vps.abaart.nl/group3/django/1 - french.wav"/>
     	<audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
@@ -45,9 +45,9 @@
    	<!-- For wet press 1, for dry press 2 -->
    	 <audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
    	 <audio src = "https://django-static.vps.abaart.nl/group3/django/wet.wav"/>
-	   <audio src = "https://django-static.vps.abaart.nl/group3/django/appuyez sur.wav"/>
-	   <audio src = "https://django-static.vps.abaart.nl/group3/django/1 - french.wav"/>
-	   <audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
+   	 <audio src = "https://django-static.vps.abaart.nl/group3/django/appuyez sur.wav"/>
+	 <audio src = "https://django-static.vps.abaart.nl/group3/django/1 - french.wav"/>
+	 <audio src = "https://django-static.vps.abaart.nl/group3/django/pour.wav"/>
   	 <audio src = "https://django-static.vps.abaart.nl/group3/django/sec.wav"/>
   	 <audio src = "https://django-static.vps.abaart.nl/group3/django/appuyez sur.wav"/>
   	 <audio src = "https://django-static.vps.abaart.nl/group3/django/2 - french.wav"/>
