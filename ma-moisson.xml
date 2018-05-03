@@ -12,10 +12,10 @@
 <form id="fertilizersEN">
     <!-- DTMF grammar and field that holds the value for crop-->
    <field name="crop">
-   		<!-- Welcome message in English -->
-   		<audio src = "https://django-static.vps.abaart.nl/group3/django/Welcome - english.wav"/>
-  	 	<!-- For corn press 1, for cotton, press 2, for cocoa, press 3-->
-   		<audio src = "https://django-static.vps.abaart.nl/group3/django/corn - english.wav"/>
+	<!-- Welcome message in English -->
+	<audio src = "https://django-static.vps.abaart.nl/group3/django/Welcome - english.wav"/>
+	<!-- For corn press 1, for cotton, press 2, for cocoa, press 3-->
+	<audio src = "https://django-static.vps.abaart.nl/group3/django/corn - english.wav"/>
       	<audio src = "https://django-static.vps.abaart.nl/group3/django/press.wav"/>
       	<audio src = "https://django-static.vps.abaart.nl/group3/django/1 - english.wav"/>
       	<audio src = "https://django-static.vps.abaart.nl/group3/django/cotton - english.wav"/>
@@ -25,14 +25,14 @@
       	<audio src = "https://django-static.vps.abaart.nl/group3/django/press.wav"/>
       	<audio src = "https://django-static.vps.abaart.nl/group3/django/3 - english.wav"/>
       	
-  	<grammar xml:lang="en-US" root = "CROP" mode="dtmf">
-      <rule id="CROP">
-        <one-of>
-          <item>1<tag>out.crop="Corn"</tag></item>
-          <item>2<tag>out.crop="Cocoa"</tag></item>
-          <item>3<tag>out.crop="Cotton"</tag></item>
-        </one-of>
-      </rule>
+ 	<grammar xml:lang="en-US" root = "CROP" mode="dtmf">
+	   <rule id="CROP">
+        	<one-of>
+          	<item>1<tag>out.crop="Corn"</tag></item>
+          	<item>2<tag>out.crop="Cocoa"</tag></item>
+          	<item>3<tag>out.crop="Cotton"</tag></item>
+        	</one-of>
+	   </rule>
       	<!-- Error handling -->
         <catch event="noinput nomatch" count="1">
       	<!-- Sorry..audio-->
@@ -41,7 +41,7 @@
         <!-- Help audio file -->
       	</catch>
   	</grammar>
-	</field>
+     </field>
 
 	
     <!--DTMF grammar and field that holds the value for weather-->
